@@ -1,0 +1,106 @@
+- Class: meta
+  Course: Multiple Regression und Partialkorrelation
+  Lesson: Multiple Regression und Partialkorrelation
+  Author: Simon Stuber
+  Type: Standard
+  Organization: Universitaet Koblenz/Landau
+  Version: 2.4.5
+
+
+- Class: text
+  Output: Heute beschaeftigen wir uns mit der multiplen Regression und der Partialkorrelation. Beides sind methoden um den Zusammenhang mehehrer Variablen zu analysieren. Wir beginnen mit der multiplen Regression. Diese ermoeglicht es, den Einfluss von mehreren unabhaengigen Variablen auf eine abhaengige Variable zu analysieren. 
+  
+
+- Class: cmd_question
+  Output: Zuerst muessen wir unseren Datensatz laden. Fuehren Sie den Befehl "load(dateipfad_rda)" aus. 
+  CorrectAnswer: load(dateipfad_rda)
+  AnswerTests: omnitest(correctExpr='load(dateipfad_rda)')
+  Hint: Der Befehl lautet "load(dateipfad_rda)"
+
+- Class: text
+  Output: Das Modellobjekt wird sehr aehnlich angelegt wie bei einer einfachen Regression. Auch hier verwenden wir die lm() Funktion. Hinter der Tilde muessen nun allerdings alle unabhaengigen Variablen stehen. 
+
+- Class: cmd_question
+  Output: Fuehren Sie eine multiple Regression aus mit der unabhaengigen Variable "y" und den unabhaengigen Variablen "x1", "x2" und "x3" aus dem Datensatz "data". Speichern Sie das Modellobjekt unter dem Namen "mod". 
+  CorrectAnswer: mod <- lm(y~x1+x2+x3, data=data)
+  AnswerTests: omnitest(correctExpr='mod <- lm(y~x1+x2+x3, data=data)')
+  Hint: Der korrekte Befehl lautet "mod <- lm(y~x1+x2+x3, data=data)"
+
+- Class: cmd_question
+  Output: Schauen Sie sich die Resultate an mit "summary(mod)". 
+  CorrectAnswer: summary(mod)
+  AnswerTests: omnitest(correctExpr="summary(mod)")
+  Hint: hint
+  
+- Class: cmd_question
+  Output: Was ist der Wert, um den sich y veraendert, wenn sich x3 um eine Einheit erhoeht und x1 und x2 konstant bleiben? Runden Sie den Wert auf zwei Stellen hinter dem Komma. 
+  CorrectAnswer: VAL
+  AnswerTests: omnitest(correctVal=-4.25)
+  Hint: hint
+  
+
+- Class: cmd_question
+  Output: Was ist der Anteil der aufgeklaerten Varianz (gerundet auf zwei Stellen hinter dem Komma)?
+  CorrectAnswer: VAL
+  AnswerTests: omnitest(correctVal=0.88)
+  Hint: hint
+
+- Class: cmd_question
+  Output: Fitten Sie nun ein zweites Modell fuer "y" in welchem Sie nur die Prediktoren "x1" und "x2" aufnehmen. Speichern Sie dieses Modell unter dem Namen "mod1.2"
+  CorrectAnswer: mod1.2 <- lm(y~x1 + x2, data=data)
+  AnswerTests: omnitest(correctExpr='mod1.2 <- lm(y~x1 + x2, data=data)')
+  Hint: Der Befehl lautet "mod1.2 <- lm(y~x1 + x2, data=data)"
+
+
+
+- Class: mult_question
+  Output: Vergleichen Sie beide Modelle. Was ist das Inkrement in R^2, das auf x3 zurueckzufuehren ist?
+  AnswerChoices: Ungefaehr 0.21;ungefaehr 17; ungefaehr 0.67
+  CorrectAnswer: Ungefaehr 0.21
+  AnswerTests: omnitest(correctVal= 'Ungefaehr 0.21')
+  Hint: hint
+  
+  
+
+- Class: cmd_question
+  Output: Plotten Sie nun das Modell "mod" und pruefen Sie die Annahmen. 
+  CorrectAnswer: plot(mod)
+  AnswerTests: omnitest(correctExpr='plot(mod)')
+  Hint: hint
+
+- Class: mult_question
+  Output: Wie wuerden Sie Ihr Urteil zusammenfassen?
+  AnswerChoices: Die Plots sehen akzeptabel aus; Alle Plots sehen sehr gut aus; Die Plots sehen sehr problematisch aus
+  CorrectAnswer: Die Plots sehen akzeptabel aus
+  AnswerTests: omnitest(correctVal= 'Die Plots sehen akzeptabel aus')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Nun schauen wir uns Partialkorrelationen an. Berechnen Sie zuerst eine einfache Korrelationsmatrix mit cor(data)
+  CorrectAnswer: cor(data)
+  AnswerTests: omnitest(correctExpr='cor(data)')
+  Hint: Der Befehl lautet "cor(data)"
+
+
+- Class: cmd_question
+  Output: Berechnen Sie nun eine Partial-korrelationsmatrix mit pcor(data) aus dem Paket ppcor. 
+  CorrectAnswer: pcor(data)
+  AnswerTests: omnitest(correctExpr='pcor(data)')
+  Hint: Der Befehl lautet "pcor(data)"
+
+- Class: mult_question
+  Output: Was ist die Partialkorrelation von "y" und "x1"
+  AnswerChoices: Ungefaehr 0.89; ungefaehr 0.44; ungefaehr 1
+  CorrectAnswer: Ungefaehr 0.89
+  AnswerTests: omnitest(correctVal= 'Ungefaehr 0.89')
+  Hint: hint
+
+- Class: mult_question
+  Output: Wie muessen Sie diese Partialkorrelation interpretieren?
+  AnswerChoices: Nach Kontrolle aller Drittvariablen, ist die Partialkorrelation von y und x1 groesser als eine gewoehnliche Korrelation ohne Kontrolle aller Drittvariablen; Durch die Kontrolle aller Drittvariablen, sinkt die Korrelation; Die Kontrolle aller Drittvariablen sorgt immer fuer eine Zunahme der Korrelation
+  CorrectAnswer: Nach Kontrolle aller Drittvariablen, ist die Partialkorrelation von y und x1 groesser als eine gewoehnliche Korrelation ohne Kontrolle aller Drittvariablen
+  AnswerTests: omnitest(correctVal= 'Nach Kontrolle aller Drittvariablen, ist die Partialkorrelation von y und x1 groesser als eine gewoehnliche Korrelation ohne Kontrolle aller Drittvariablen')
+  Hint: hint
+
+- Class: text
+  Output: Das war die letzte Swirl Uebung. Schoene Semesterferien und viel Glueck mit den Pruefungen!
